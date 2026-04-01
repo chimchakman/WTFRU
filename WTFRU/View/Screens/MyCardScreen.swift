@@ -34,13 +34,12 @@ struct MyCardScreen: View {
                 case (true, false):
                     CardCreateView(isEditing: $isEditing)
                 case (_, true):
-                    CardSettingsView(isEditing: $isEditing)
+                    CardSettingsView(isFirst: $isFirst, isEditing: $isEditing)
                 case (false, false):
                     CardView(isEditing: $isEditing)
                 }
             }
         }
-        .background(.indigo.opacity(0.15))
         .padding(.horizontal, 15)
         
     }

@@ -14,9 +14,9 @@ class Namecard {
     var name: String
     var profileImage: Data?
     var badges: [BadgeTypes]
-    var introText: String?
+    var introText: String
     var introImages: [IntroImage]
-    init(isMine: Bool = false, name: String, profileImage: Data? = nil, badges: [BadgeTypes] = [], introText: String? = nil, introImages: [IntroImage] = []) {
+    init(isMine: Bool = false, name: String, profileImage: Data? = nil, badges: [BadgeTypes] = [], introText: String = "Hello world.", introImages: [IntroImage] = []) {
         self.isMine = isMine
         self.name = name
         self.profileImage = profileImage

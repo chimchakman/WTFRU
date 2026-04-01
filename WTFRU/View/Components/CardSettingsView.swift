@@ -12,6 +12,7 @@ struct CardSettingsView: View {
     @Environment(\.modelContext) private var modelContext
     @Query(filter: #Predicate<Namecard> { $0.isMine == true })
     private var myCards: [Namecard]
+    @Binding var isFirst: Bool
     @Binding var isEditing: Bool
     @State var isNecessaryFieldFilled: Bool = false
     @State var myNamecardDraft = NamecardDraft(isMine: true, name: "")
@@ -27,6 +28,18 @@ struct CardSettingsView: View {
             RoundedButton(text: "Save", action: {save()}, isEnabled: isNecessaryFieldFilled)
                 .padding(20)
         }
+        .onAppear {
+            if let existing = myCards.first {
+                myNamecardDraft = NamecardDraft(
+                    isMine: existing.isMine,
+                    name: existing.name,
+                    profileImage: existing.profileImage,
+                    badges: existing.badges,
+                    introText: existing.introText,
+                    introImages: existing.introImages
+                )
+            }
+        }
     }
     
     func save() -> Void {
@@ -39,6 +52,7 @@ struct CardSettingsView: View {
             }
             try modelContext.save()
             isEditing = false
+            isFirst = false
         } catch {
             print("저장 실패.")
         }

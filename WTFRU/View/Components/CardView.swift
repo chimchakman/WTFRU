@@ -13,8 +13,12 @@ struct CardView: View {
         VStack {
             CardFront()
             Spacer()
-            RoundedButton(text: "Share", action: {})
-                .padding(20)
+            HStack {
+                RoundedButton(text: "Edit", action: { isEditing.toggle() })
+                    .padding(20)
+                RoundedButton(text: "Share", action: {})
+                    .padding(20)
+            }
         }
     }
 }

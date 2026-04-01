@@ -8,9 +8,11 @@
 import SwiftUI
 import SwiftData
 
-enum BadgeTypes: String, Codable {
+enum BadgeTypes: String, CaseIterable, Identifiable, Codable {
     case coffee = "☕️"
     case tech = "💻"
     case design = "🎨"
     case pm = "🗒️"
+    
+    var id: Self { self }
 }

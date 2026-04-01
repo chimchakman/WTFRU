@@ -27,7 +27,6 @@ struct CollectionsScreen: View {
                 }
             }
         }
-        .background(.pink.opacity(0.15))
         .padding(.horizontal, 15)
     }
 }

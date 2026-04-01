@@ -18,8 +18,6 @@ struct CardFront: View {
     @State private var selectedItems: [PhotosPickerItem] = []
     @State private var images: [UIImage] = []
     
-    private var remainingCount: Int { 3 - images.count }
-    
     var body: some View {
         VStack (spacing: 15){
             HStack {
@@ -27,56 +25,58 @@ struct CardFront: View {
                     if let profileData = myCards.first?.profileImage,
                        let uiImage = UIImage(data: profileData) {
                         Image(uiImage: uiImage)
+                            .resizable()
+                            .scaledToFill()
+                            .clipped()
                     } else {
                         Color.indigo.opacity(0.25)
                     }
                     
                 }
-                .frame(maxWidth: .infinity)
                 .frame(width: 120, height: 180)
                 .cornerRadius(10)
+                .clipped()
                 VStack {
                     HStack {
                         Spacer()
                     }
                     Spacer()
-                    Text("Mulgae")
+                    Text(myCards.first?.name ?? "Name")
                         .font(.system(size: 24))
                         .fontWeight(.bold)
                 }
             }
             .frame(height: 180)
             HStack {
-                Text(BadgeTypes.coffee.rawValue)
-                Text(BadgeTypes.tech.rawValue)
-                Text(BadgeTypes.design.rawValue)
-                Text(BadgeTypes.pm.rawValue)
+                ForEach(myCards.first?.badges ?? [], id: \.self) { badge in
+                    Text(badge.rawValue)
+                }
+                .font(.system(size: 16))
                 Spacer()
             }
+            .frame(height: 25)
             HStack {
-                Text("한국인이면 제발 침투부 구독합시다.")
+                Text(myCards.first?.introText ?? "")
                     .font(.system(size: 16))
                     .fontWeight(.medium)
+                    .padding(5)
                 Spacer()
             }
             .frame(height: 30)
             HStack {
-                Group {
-                        let images = myCards.first?.introImages ?? []
-                        ForEach(0..<3, id: \.self) { i in
-                            if i < images.count {
-                                Text(images[i].title ?? "")
-                                let uiImage = UIImage(data: images[i].image)
-                                Image(uiImage: uiImage!)
-                                    .scaledToFit()
-                            } else {
-                                RoundedRectangle(cornerRadius: 10)
-                                    .foregroundStyle(.gray.opacity(0.3))
-                            }
-                        }
-                    
+                Spacer()
+                ForEach(1...3, id: \.self) { i in
+                    if let image = myCards.first?.introImages.first(where: {$0.order == i}),
+                       let uiImage = UIImage(data: image.image) {
+                        Image(uiImage: uiImage)
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 80, height: 100)
+                            .clipped()
+                            .cornerRadius(10)
+                    }
                 }
-                .frame(height: 100)
+                Spacer()
             }
             Spacer()
         }
@@ -86,18 +86,7 @@ struct CardFront: View {
         .cornerRadius(20)
     }
     
-    private func saveImage(from photo: PhotosPickerItem) async {
-        do {
-            if let data = try await photo.loadTransferable(type: Data.self) {
-                myCards.first?.profileImage = data
-                print("이미지 저장 성공")
-            }
-        } catch {
-            print("이미지 저장 실패")
-        }
-    }
 }
-
 struct CardFrontEdit: View {
     var body: some View {
         Text("Hello, World!")
