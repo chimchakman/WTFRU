@@ -12,6 +12,9 @@ import PhotosUI
 struct CardSettingsFront: View {
     @State private var selectedItems: [PhotosPickerItem] = []
     @State private var images: [UIImage] = []
+
+    @Query(filter: #Predicate<Namecard> { $0.isMine == true })
+    private var myCards: [Namecard]
     
     @Binding var draft: NamecardDraft
     @Binding var isNecessaryFieldFilled: Bool
@@ -92,6 +95,7 @@ struct CardSettingsFront: View {
         .padding(20)
         .frame(width: 300, height: 550)
         .background(.indigo.opacity(0.3))
+        .cornerRadius(20)
     }
     
     private func saveImage(from photo: PhotosPickerItem) async {

@@ -20,40 +20,17 @@ struct CardFront: View {
     
     private var remainingCount: Int { 3 - images.count }
     
-    var isEditing: Bool
-    
     var body: some View {
         VStack (spacing: 15){
             HStack {
                 Group {
-                    if isEditing {
-                        PhotosPicker (selection: $selectedItems, maxSelectionCount: remainingCount) {
-                            ZStack {
-                                Image(systemName: "photo.badge.plus")
-                                if let profileData = myCards.first?.profileImage,
-                                    let uiImage = UIImage(data: profileData) {
-                                    Image(uiImage: uiImage)
-                                } else {
-                                    Color.indigo.opacity(0.5)
-                                }
-                            }
-                        }
-                        .onChange(of: selectedItems) {_, photos in
-                            Task {
-                                for photo in photos {
-                                    await saveImage(from: photo)
-                                }
-                                selectedItems.removeAll()
-                            }
-                        }
+                    if let profileData = myCards.first?.profileImage,
+                       let uiImage = UIImage(data: profileData) {
+                        Image(uiImage: uiImage)
                     } else {
-                        if let profileData = myCards.first?.profileImage,
-                            let uiImage = UIImage(data: profileData) {
-                            Image(uiImage: uiImage)
-                        } else {
-                            Color.indigo.opacity(0.25)
-                        }
+                        Color.indigo.opacity(0.25)
                     }
+                    
                 }
                 .frame(maxWidth: .infinity)
                 .frame(width: 120, height: 180)
@@ -85,9 +62,6 @@ struct CardFront: View {
             .frame(height: 30)
             HStack {
                 Group {
-                    if isEditing {
-                        Text("")
-                    } else {
                         let images = myCards.first?.introImages ?? []
                         ForEach(0..<3, id: \.self) { i in
                             if i < images.count {
@@ -100,7 +74,7 @@ struct CardFront: View {
                                     .foregroundStyle(.gray.opacity(0.3))
                             }
                         }
-                    }
+                    
                 }
                 .frame(height: 100)
             }
@@ -109,6 +83,7 @@ struct CardFront: View {
         .padding(20)
         .frame(width: 300, height: 550)
         .background(.indigo.opacity(0.3))
+        .cornerRadius(20)
     }
     
     private func saveImage(from photo: PhotosPickerItem) async {
@@ -131,5 +106,5 @@ struct CardFrontEdit: View {
 
 
 #Preview {
-    CardFront(isEditing: true)
+    CardFront()
 }

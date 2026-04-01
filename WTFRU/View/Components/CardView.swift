@@ -11,7 +11,7 @@ struct CardView: View {
     @Binding var isEditing: Bool
     var body: some View {
         VStack {
-            Card(isEditing: $isEditing)
+            CardFront()
             Spacer()
             RoundedButton(text: "Share", action: {})
                 .padding(20)

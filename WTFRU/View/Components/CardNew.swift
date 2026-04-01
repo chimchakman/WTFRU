@@ -15,6 +15,7 @@ struct CardNew: View {
                 .frame(width: 300, height: 550)
                 .background(.yellow.opacity(0.3))
         }
+        .cornerRadius(20)
     }
 }
 

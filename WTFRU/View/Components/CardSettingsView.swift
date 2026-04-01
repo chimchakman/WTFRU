@@ -19,10 +19,9 @@ struct CardSettingsView: View {
     
     var body: some View {
         VStack {
-            CardSettings(
-                isEditing: $isEditing,
-                isNecessaryFieldFilled: $isNecessaryFieldFilled,
-                draft: $myNamecardDraft
+            CardSettingsFront(
+                draft: $myNamecardDraft,
+                isNecessaryFieldFilled: $isNecessaryFieldFilled
             )
             Spacer()
             RoundedButton(text: "Save", action: {save()}, isEnabled: isNecessaryFieldFilled)
