@@ -1,14 +1,16 @@
 //
-//  Card.swift
+//  CardSettings.swift
 //  WTFRU
 //
-//  Created by Sunghyun Kim on 3/23/26.
+//  Created by Sunghyun Kim on 3/30/26.
 //
 
 import SwiftUI
 
-struct Card: View {
+struct CardSettings: View {
     @Binding var isEditing: Bool
+    @Binding var isNecessaryFieldFilled: Bool
+    @Binding var draft: NamecardDraft
     @State var isFlipped: Bool = false
     var body: some View {
         VStack {
@@ -17,9 +19,9 @@ struct Card: View {
             } label: {
                 Group {
                     if isFlipped {
-                        CardBack(isEditing: isEditing)
+                        CardSettingsBack(isEditing: isEditing)
                     } else {
-                        CardFront(isEditing: isEditing)
+                        CardSettingsFront(draft: $draft, isNecessaryFieldFilled: $isNecessaryFieldFilled)
                     }
                 }
             }

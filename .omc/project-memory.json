@@ -1,0 +1,73 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1774872358571,
+  "projectRoot": "/Users/sunghyunkim/Code/Xcode/WTFRU",
+  "techStack": {
+    "languages": [],
+    "frameworks": [],
+    "packageManager": null,
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": null,
+    "testCommand": null,
+    "lintCommand": null,
+    "devCommand": null,
+    "scripts": {}
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": null
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [],
+    "gitBranches": null
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "WTFRU": {
+      "path": "WTFRU",
+      "purpose": null,
+      "fileCount": 2,
+      "lastAccessed": 1774872358566,
+      "keyFiles": [
+        "ContentView.swift",
+        "WTFRUApp.swift"
+      ]
+    },
+    "WTFRU.xcodeproj": {
+      "path": "WTFRU.xcodeproj",
+      "purpose": null,
+      "fileCount": 1,
+      "lastAccessed": 1774872358566,
+      "keyFiles": [
+        "project.pbxproj"
+      ]
+    },
+    "WTFRUTests": {
+      "path": "WTFRUTests",
+      "purpose": null,
+      "fileCount": 1,
+      "lastAccessed": 1774872358566,
+      "keyFiles": [
+        "WTFRUTests.swift"
+      ]
+    },
+    "WTFRUUITests": {
+      "path": "WTFRUUITests",
+      "purpose": null,
+      "fileCount": 2,
+      "lastAccessed": 1774872358566,
+      "keyFiles": [
+        "WTFRUUITests.swift",
+        "WTFRUUITestsLaunchTests.swift"
+      ]
+    }
+  },
+  "hotPaths": [],
+  "userDirectives": []
+}

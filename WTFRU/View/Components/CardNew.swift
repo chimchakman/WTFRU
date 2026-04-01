@@ -12,12 +12,13 @@ struct CardNew: View {
         VStack {
             Text("Create\n  Your\n    New Card!")
                 .font(.system(size: 24, design: .monospaced))
+                .frame(width: 300, height: 550)
+                .background(.yellow.opacity(0.3))
         }
-        .frame(width: 300, height: 550)
-        .background(.yellow.opacity(0.3))
     }
 }
 
 #Preview {
+    @Previewable @State var isEditing: Bool = false
     CardNew()
 }
